@@ -8,6 +8,17 @@
 <meta charset="utf-8"/>
 <title>Mapa y Municipios de Querétaro</title>
 <style>
+  .zoom-wrapper {
+  overflow: auto;
+  transform-origin: top left;
+}
+
+svg {
+  width: 1000px; /* o 1200px si quieres más espacio horizontal */
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
   #zoom-controls {
   display: flex;
   gap: 10px;
@@ -141,7 +152,7 @@
   <button class="zoom-btn" onclick="zoomMap(-0.1)">–</button>
   <button class="zoom-btn" onclick="zoomMap(0.1)">+</button>
 </div>
-
+<div class="zoom-wrapper">
 <svg height="1061.52" id="svg2" inkscape:output_extension="org.inkscape.output.svg.inkscape" inkscape:version="0.45.1" sodipodi:docbase="C:\Documents and Settings\Juan\Mis documentos\Mis imágenes\Wikipedia\mapas" sodipodi:docname="Municipios de Queretaro.svg" sodipodi:version="0.32" version="1.0" width="1183.8877" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg">
 <defs id="defs4"></defs>
 <sodipodi:namedview bordercolor="#666666" borderopacity="1.0" id="base" inkscape:current-layer="layer1" inkscape:cx="591.94385" inkscape:cy="530.76001" inkscape:document-units="px" inkscape:guide-bbox="true" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:window-height="712" inkscape:window-width="1024" inkscape:window-x="-4" inkscape:window-y="-4" inkscape:zoom="0.4860954" pagecolor="#ffffff" showguides="true"></sodipodi:namedview>
@@ -288,6 +299,7 @@
 </g>
 </svg>
 </div>
+</div>
   <div class="tabla-container">
     <h2>Municipios de Querétaro</h2>
     <table>
@@ -321,20 +333,19 @@
 </main>
 
 <script>
-// Pued<script>
   let zoomLevel = 1;
-  const svg = document.querySelector("svg");
+  const zoomWrapper = document.querySelector('.zoom-wrapper');
 
   function zoomMap(factor) {
     zoomLevel += factor;
     if (zoomLevel < 0.3) zoomLevel = 0.3;
     if (zoomLevel > 3) zoomLevel = 3;
-    svg.style.transform = `scale(${zoomLevel})`;
-    svg.style.transformOrigin = 'top left';
+    zoomWrapper.style.transform = `scale(${zoomLevel})`;
   }
 </script>
 
-</script>
+
+
 
 
 </body>
