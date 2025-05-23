@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Potencial Eólico en Querétaro - Investigación</title>
+  
+  <!-- Fuentes y estilos -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    header {
+      background-color: #1e3767;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    section {
+      padding: 50px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1, h2, h3 {
+      color: #1e3767;
+      margin-bottom: 20px;
+    }
+
+    p {
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    .block {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 60px;
+      gap: 30px;
+    }
+
+    .block.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .block img {
+      flex: 1 1 300px;
+      max-width: 450px;
+      width: 100%;
+      border-radius: 15px;
+      transition: transform 0.3s ease;
+    }
+
+    .block img:hover {
+      transform: scale(1.05);
+    }
+
+    .text-content {
+      flex: 1 1 300px;
+    }
+
+    .formula {
+      background-color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-family: monospace;
+      margin: 10px 0;
+    }
+
+    footer {
+      background-color: #1e3767;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Investigación sobre Potencial Eólico en Querétaro</h1>
+<p style="font-size: 2.5rem;">Fundamentos científicos, análisis técnico y visualización del recurso eólico en Querétaro</p>
+
+  </header>
+
+  <section>
+
+    <!-- Bloque 1 -->
+    <div class="block">
+      <div class="text-content">
+        <h2>¿Qué es el viento?</h2>
+        <p>El viento se genera por el calentamiento desigual de la Tierra debido al sol, lo que crea zonas de alta y baja presión que mueven el aire. Esta energía en movimiento, llamada energía cinética, puede aprovecharse mediante aerogeneradores (o molinos de viento) que transforman el movimiento del aire en energía mecánica y luego en electricidad limpia y renovable.</p>
+      </div>
+      <img src="Images/Investigation/viento.gif" alt="Viento Icono">
+    </div>
+ <!-- Bloque 2 -->
+    <div class="block">
+      <div class="text-content">
+        <h2>Historia</h2>
+        <p>La energía eólica se usa desde el 4500 a.C., cuando los egipcios la aprovecharon para navegar por el Nilo. En el siglo VII surgieron en Asia los primeros molinos para riego y molienda. Europa los adoptó en el siglo XII con estructuras de madera, y en el siglo XIV apareció en Francia el molino de torre de piedra. Durante el siglo XIX, Holanda construyó unos 9,000 molinos, muchos usados para bombear agua en los polders.</p>
+      </div>
+      <img src="Images/documentation/molino-imagen-animada-0020.gif" alt="Viento Icono">
+    </div>
+
+    <!-- Bloque 3 -->
+    <div class="block reverse">
+      <div class="text-content">
+        <h2>Fundamento fisico</h2>
+        <p>El aerogenerador transforma la energía del viento en electricidad. El viento mueve las palas del rotor, generando un giro que se transmite al generador para producir energía eléctrica. Las palas, con forma similar a las alas de un avión, aprovechan principalmente la fuerza ascensional (no el empuje directo), que surge por la diferencia de presión entre la parte superior e inferior. La potencia del viento depende de la densidad del aire, el tamaño del rotor y, sobre todo, de la velocidad del viento al cubo. Sin embargo, no toda esa energía puede aprovecharse; el coeficiente de potencia indica cuánta energía puede capturar un aerogenerador realmente.</p>
+        <p>Formula:</p>
+        <p class="formula">P = ½ × ρ × A × v³</p>
+        <p>P = potencia del viento (W)</p>
+        <p>ρ = densidad del aire (kg/m³)</p> 
+        <p>A = área barrida por el rotor (m²)</p> 
+        <p>v = velocidad del viento (m/s)</p>      
+      </div>
+      <img src="Images/documentation/fisico.gif" alt="NASA POWER">
+    </div>
+
+    <div class="block reverse">
+      <div class="text-content">
+        <h2>Obtención y predicción del recurso eólico</h2>
+        <p>Para evaluar el potencial eólico en Querétaro, se recopilaron datos históricos de velocidad del viento provenientes de fuentes confiables como NASA POWER, así como estaciones meteorológicas nacionales y bases de datos abiertas. Estos datos corresponden a registros medidos a una altura estándar de 10 metros sobre el nivel del suelo, y abarcan el periodo de 2018 a 2024.
+       <p> </p>
+Una vez obtenida esta información, se aplicó un modelo matemático de extrapolación basado en la ley de potencias, ampliamente utilizada en estudios eólicos. Esta fórmula permite estimar la velocidad del viento a alturas operativas típicas de aerogeneradores (como 80 m), ajustando los valores de entrada según las características del terreno.
+
+El objetivo principal de este proceso no es solo conocer la velocidad del viento, sino predecir cuánta energía eléctrica podría generarse en cada zona, lo cual permite identificar regiones con mayor viabilidad técnica para futuros proyectos eólicos.</p>
+      </div>
+      <img src="Images/Investigation/Nasa.png" alt="NASA POWER">
+    </div>
+
+    <div class="block reverse">
+      <div class="text-content">
+        <h2>Extrapolación de datos de viento</h2>
+        <p>Para la estimación del potencial eólico se utilizó la base de datos de <strong>NASA POWER</strong>, extrayendo datos de velocidad del viento a 10 m de altura.</p>
+        <p>Se aplicó la fórmula de extrapolación:</p>
+        <p class="formula">v(h) = v₀ × (h / h₀)^a</p>
+        <p>v(h) = velocidad del viento a la altura deseada (m/s)</p>
+        <p>v₀ = velocidad medida a la altura conocida, normalmente 10m (m/s)</p>
+        <p>h = altura objetivo, por ejemplo, 80m</p>
+        <p>h₀ = altura de referencia, por ejemplo, 10m</p>
+        <p>a = coeficiente que depende del tipo de terreno (de 0,10 en terreno liso a 0,40 en áreas boscosas o urbanas)</p>
+        <p>Esta fórmula permite predecir cómo crece la velocidad del viento al subir en altura. Por ejemplo, si sabemos que a 10 m la velocidad es de 5 m/s y queremos saber cuánto será a 80 m, usamos la fórmula para estimarlo, considerando el tipo de terreno. Esta predicción es fundamental porque los datos que obtenemos (como los de la base NASA POWER) normalmente están a 10 m, pero los aerogeneradores modernos trabajan a alturas mucho mayores.
+
+          Los datos se procesan en Excel, donde aplicamos esta fórmula a todas las mediciones para obtener una estimación precisa de la velocidad y calcular así la energía que se puede generar.
+          
+          </p>
+      </div>
+      <img src="Images/Investigation/Nasa.png" alt="NASA POWER">
+      
+     </div>
+
+    <!-- Bloque 4 -->
+    <section id="funcionamiento-aerogenerador" style="padding: 50px; background-color: #f5f5f5;">
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+          <h2 style="color: #1e3767;">Funcionamiento de un Aerogenerador</h2>
+          <p>Para visualizar de manera clara cómo opera un aerogenerador, te presentamos el siguiente video explicativo:</p>
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 20px;">
+            <iframe src="https://www.youtube.com/embed/kmN9qD8vXbY" 
+                    frameborder="0" 
+                    allowfullscreen 
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+            </iframe>
+          </div>
+        </div>
+      </section>
+      
+
+    <!-- Bloque 5 -->
+    <div class="block reverse">
+      <div class="text-content">
+        <h2>Estudio de Caso: Parque Eólico de Huimilpan</h2>
+        <p>Ubicado en Huimilpan, Querétaro, este parque cuenta con 20 turbinas Nordex de 2.5 MW cada una, sumando 50 MW de capacidad instalada. Opera desde 2017 y abastece a más de 125,000 personas al año.</p>
+        <p>Capacidad instalada: 30 MW (megawatts) de generación eólica
+
+Es el primer parque eólico construido en el estado de Querétaro
+
+Aerogeneradores: Cuenta con 15 turbinas Vestas V110-2.0 MW de tecnología danesa, cada una de 2 MW de potencia nominal
+
+Estos aerogeneradores tienen un diámetro de rotor de ~110 m (modelo V110)
+<p> </p>
+Las torres de los aerogeneradores típicamente alcanzan entre 80 y 95 m de altura de buje (hub) para este modelo, optimizando el aprovechamiento del recurso eólico.
+
+Puesta en marcha: La construcción se realizó entre 2017 y 2020, con un periodo de pruebas en 2022-2023. El parque inició operaciones comerciales a finales de 2023, tras superar ajustes y trámites regulatorios
+
+Desde entonces genera electricidad eólica que ya alimenta la red eléctrica nacional en la región.</p>
+      </div>
+      <img src="Images/Investigation/huimilpan.jpg" alt="Parque Eólico Huimilpan">
+    </div>
+
+    <div class="block">
+      <div class="text-content">
+        <h2>Visualización del Potencial Eólico – Dashboard Interactivo</h2>
+        <p>Como parte del análisis, se desarrolló un dashboard interactivo que permite visualizar el comportamiento del viento en El Marqués (Querétaro) utilizando datos históricos procesados (2018–2024) a dos alturas: 10 m (medición estándar) y 80 m (altura operativa de aerogeneradores).
+
+Este panel incluye:
+<p> </p>
+-> Controles de año y altura: El usuario puede seleccionar el año y la altura de interés, lo que actualiza dinámicamente los datos mostrados.
+<p> </p>
+-> Indicadores clave (KPI): Muestra la velocidad promedio anual, la altura seleccionada y un semáforo de viabilidad.
+<p> </p>
+-> Gráficas mensuales y estacionales: Se despliega la velocidad media por mes, un histograma de frecuencias de viento, y un gráfico por estación del año.
+<p> </p>
+-> Notas técnicas: Incluye una interpretación de la viabilidad técnica y consideraciones territoriales basadas en el plan de desarrollo urbano.
+<p> </p>
+Este dashboard fue desarrollado en HTML, CSS y JavaScript utilizando la biblioteca Chart.js, y permite una comprensión rápida, visual y comparativa del recurso eólico. Su objetivo es facilitar la toma de decisiones técnicas al identificar patrones anuales de viento y evaluar el potencial de implementación de aerogeneradores adaptados a la región.
+
+</p>
+      </div>
+      <img src="Images/dashboard.png" alt="Viento Icono">
+      <img src="Images/dashboard2.png" alt="Viento Icono">
+      <img src="Images/dashboard3.png" alt="Viento Icono">
+    </div>
+
+    <!-- Bloque 6 -->
+    <div style="text-align: left; margin-top: 60px;">
+      <div style="text-align: center; margin-top: 60px;"> <h2>Conclusiones</h2>   </div>
+      <p style="max-width: 800px; margin: 20px auto;">
+<p> </p>
+Tras analizar los datos de viento extrapolados a 80 m para el periodo 2018–2024, se concluye que Querétaro cuenta con un potencial eólico útil, pero concentrado en municipios específicos.
+<p> </p>
+Huimilpan y Pedro Escobedo destacan como los más viables, al combinar velocidades de viento cercanas a 5 m/s con disponibilidad territorial. Huimilpan ya opera un parque eólico de 30 MW y cuenta con espacio para expansión, mientras que Pedro Escobedo presenta condiciones técnicas similares en un entorno rural favorable.
+<p> </p>
+El Marqués y Colón, aunque presentan vientos aceptables en zonas puntuales, enfrentan limitaciones por falta de espacio disponible, uso de suelo urbano, presencia de infraestructura crítica (como el aeropuerto) o terrenos montañosos y agrícolas, lo cual dificulta el desarrollo de proyectos a gran escala. Además, otros municipios del estado también presentan condiciones técnicas viables, pero con poco o nulo espacio disponible, lo que restringe su aprovechamiento real.
+<p> </p>
+Recomendación: Se sugiere priorizar proyectos en zonas donde convergen buen recurso eólico y espacio disponible. Para áreas con limitaciones físicas, pueden considerarse soluciones de menor escala o eólica distribuida, como turbinas individuales en polígonos industriales o zonas rurales fragmentadas. Asimismo, tecnologías actuales que operan con baja velocidad de corte pueden hacer viables sitios antes descartados. Es clave integrar la planificación territorial con criterios energéticos para proteger corredores de viento frente al crecimiento urbano.
+<p> </p>
+En resumen, el estado de Querétaro sí posee zonas con viabilidad eólica, pero su aprovechamiento requiere enfoques estratégicos, decisiones informadas y políticas integradas que conecten el desarrollo urbano con la transición energética sostenible.
+<img src="Images/conclusion.png" alt="Viento Icono" style="display: block; margin: 0 auto;">
+
+      </p>
+    </div>
+  </section>
+  <section id="descargas" style="padding: 50px; background-color: #eef3f7;">
+  <div style="max-width: 900px; margin: auto; text-align: center;">
+    <h2 style="color: #1e3767;">📄 Descargas del Proyecto</h2>
+    <p style="margin-bottom: 30px;">
+      A continuación puedes visualizar o descargar los documentos clave del proyecto para su consulta o difusión:
+    </p>
+
+    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; margin-top: 20px;">
+      <!-- Botón para Cartel -->
+      <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 280px;">
+        <h4>🖼️ Cartel del Proyecto</h4>
+        <p>Versión final del cartel presentado en el stand de investigación.</p>
+        <a href="Documents/new cartel.pdf" target="_blank" class="btn btn-primary">Visualizar</a>
+        <a href="Documents/new cartel.pdf" download class="btn btn-outline-secondary mt-2">Descargar PDF</a>
+      </div>
+
+      <!-- Botón para Protocolo -->
+      <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 280px;">
+        <h4>📘 Protocolo de Investigación</h4>
+        <p>Documento que detalla el proceso, objetivos y metodología del estudio.</p>
+        <a href="Documents/protocolo.pdf" target="_blank" class="btn btn-primary">Visualizar</a>
+        <a href="Documents/protocolo.pdf" download class="btn btn-outline-secondary mt-2">Descargar PDF</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="glosario-referencias" style="padding: 50px; background-color: #f9f9f9;">
+  <div style="max-width: 1000px; margin: auto;">
+  
+    <h2 style="color: #1e3767;">📚 Referencias (APA 7)</h2>
+
+    <h4>1. Marco teórico y fundamentos técnicos</h4>
+    <ul>
+      <li>Burton, T., et al. (2011). <i>Wind Energy Handbook</i>. John Wiley & Sons.</li>
+      <li>Gasch, R., & Twele, J. (2012). <i>Wind Power Plants</i>. Springer.</li>
+      <li>Hau, E. (2013). <i>Wind Turbines</i>. Springer.</li>
+      <li>Heier, S. (2014). <i>Grid Integration of Wind Energy</i>. Wiley.</li>
+      <li>Manwell, J. F., et al. (2009). <i>Wind Energy Explained</i>. Wiley.</li>
+    </ul>
+
+    <h4>2. Visualización y programación</h4>
+    <ul>
+      <li>Ware, C. (2020). <i>Information Visualization</i>. Elsevier.</li>
+      <li>Flanagan, D. (2020). <i>JavaScript: The Definitive Guide</i>. O’Reilly Media.</li>
+      <li>Longley, P. A., et al. (2015). <i>Geographic Information Systems and Science</i>. Wiley.</li>
+    </ul>
+
+    <h4>3. Meteorología y bases climáticas</h4>
+    <ul>
+      <li>NASA POWER Project. (n.d.). https://power.larc.nasa.gov/</li>
+      <li>INIFAP. (n.d.). https://clima.inifap.gob.mx/lnmysr/Estaciones/Mapa</li>
+      <li>Meteostat. (n.d.). https://meteostat.net/en/station/76625</li>
+      <li>Tutiempo. (n.d.). https://www.tutiempo.net/queretaro-qro.html</li>
+      <li>MeteoSolana. (n.d.). https://mx.meteosolana.net/clima-en-tequisquiapan</li>
+      <li>Weather Underground. (n.d.). https://www.wunderground.com/weather/mx/querétaro</li>
+    </ul>
+
+    <h4>4. HTML, Bootstrap y GitHub</h4>
+    <ul>
+      <li>W3Schools. (n.d.). https://www.w3schools.com/</li>
+      <li>GitHub. (n.d.). https://github.com/bubkoo/html-to-image</li>
+      <li>MDN. (n.d.). https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img</li>
+      <li>GeeksforGeeks. (n.d.). https://www.geeksforgeeks.org/html-img-tag/</li>
+    </ul>
+
+    <h4>5. Turbinas eólicas y precios</h4>
+    <ul>
+      <li>CasaVerdeHub. (n.d.). https://casaverdehub.net/energia-eolica/turbinas-eolicas-su-contribucion-objetivos-desarrollo-sostenible/</li>
+      <li>Vestas. (n.d.). V110 y V150 Specs.</li>
+      <li>GE Renewable Energy. (n.d.). https://www.ge.com/renewableenergy/</li>
+      <li>Siemens Gamesa. (n.d.). https://www.siemensgamesa.com/en-int</li>
+      <li>Cemi Wind. (n.d.). 2MW specs (imagen del sistema).</li>
+    </ul>
+  </div>
+</section>
+
+
+  <footer>
+    © 2025 Proyecto de Investigación - Potencial Eólico Querétaro
+  </footer>
+
+</body>
+</html>

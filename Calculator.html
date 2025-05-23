@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora Eólica - Querétaro</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #dfe9f3, #ffffff);
+      padding: 20px;
+    }
+    .calculator-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 70px;
+  margin: 50px auto; /* margen arriba para separación */
+  width: 100%; /* Que ocupe todo el ancho disponible */
+}
+
+    .section-title {
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #0a3d62;
+    }
+    .result-box {
+      background: #f1f6fb;
+      border-radius: 15px;
+      padding: 20px;
+    }
+    .form-label {
+      font-weight: 600;
+    }
+    .btn-calculate {
+      background-color: #0a3d62;
+      color: white;
+      width: 100%;
+    }
+    .btn-calculate:hover {
+      background-color: #145da0;
+    }
+    .card-img-top {
+      height: 180px; /* ajusta aquí si quieres más alto */
+      width: 100%;
+      object-fit: cover;
+      border-top-left-radius: 20px; /* opcional para redondear arriba */
+      border-top-right-radius: 20px;
+    }
+    .turbine-card {
+  background: #ffffff; /* Color normal */
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.turbine-card:hover {
+  transform: translateY(-8px); /* Se levanta */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2); /* Sombra más intensa */
+  background-color: #e8f0fe; /* Cambia a azul clarito al pasar mouse */
+}
+
+.btn-select {
+  background-color: #007bff; /* Azul Bootstrap */
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 15px;
+  font-weight: 600;
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-select:hover {
+  background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
+  transform: scale(1.05); /* Crece un poquito al pasar el mouse */
+}
+.explanation-box ul li {
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+.explanation-box ul li {
+  margin-bottom: 20px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+#interpretationSection {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+#interpretationSection.show {
+  opacity: 1;
+}
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2 class="section-title text-center mb-4">Modelos de Turbinas</h2>
+  
+    <div class="row g-4" id="turbineCards">
+  
+      <!-- Card 1: Vestas V110-2.0 MW -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card turbine-card h-100">
+          <img src="Images/Images_calculator/Vestas V110-2.0 MW.jpg" class="card-img-top" alt="Vestas V110-2.0">
+          <div class="card-body">
+            <h5 class="card-title">Vestas V110-2.0 MW</h5>
+            <ul class="list-unstyled">
+              <li><strong>Potencia:</strong> 2.0 MW</li>
+              <li><strong>Altura torre:</strong> 95 m</li>
+              <li><strong>Diámetro rotor:</strong> 110 m</li>
+              <li><strong>Vel. mínima:</strong> 3.5 m/s</li>
+              <li><strong>Precio aprox:</strong> $2.3M USD</li>
+            </ul>
+            <button class="btn btn-select mt-3" onclick="selectTurbine('huimilpan')">Seleccionar esta turbina</button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Card 2: GE 2.75-120 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card turbine-card h-100">
+          <img src="Images/Images_calculator/GE 2.75-120 x2.jpg" class="card-img-top" alt="GE 2.75-120">
+          <div class="card-body">
+            <h5 class="card-title">GE 2.75-120</h5>
+            <ul class="list-unstyled">
+              <li><strong>Potencia:</strong> 2.75 MW</li>
+              <li><strong>Altura torre:</strong> 100 m</li>
+              <li><strong>Diámetro rotor:</strong> 120 m</li>
+              <li><strong>Vel. mínima:</strong> 3.0 m/s</li>
+              <li><strong>Precio aprox:</strong> $3.5M USD</li>
+            </ul>
+            <button class="btn btn-select mt-3" onclick="selectTurbine('ge')">Seleccionar esta turbina</button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Card 3: Vestas V150-4.2 MW -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card turbine-card h-100">
+          <img src="Images/Images_calculator/Vestas V150-4.2 MW.webp" class="card-img-top" alt="Vestas V150-4.2">
+          <div class="card-body">
+            <h5 class="card-title">Vestas V150-4.2 MW</h5>
+            <ul class="list-unstyled">
+              <li><strong>Potencia:</strong> 4.2 MW</li>
+              <li><strong>Altura torre:</strong> 105 m</li>
+              <li><strong>Diámetro rotor:</strong> 150 m</li>
+              <li><strong>Vel. mínima:</strong> 3.0 m/s</li>
+              <li><strong>Precio aprox:</strong> $4.2M USD</li>
+            </ul>
+            <button class="btn btn-select mt-3" onclick="selectTurbine('vestas')">Seleccionar esta turbina</button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Card 4: Siemens Gamesa SG 5.0 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card turbine-card h-100">
+          <img src="Images/Images_calculator/Siemens Gamesa SG 5.0x2.jpg" class="card-img-top" alt="Siemens Gamesa SG 5.0">
+          <div class="card-body">
+            <h5 class="card-title">Siemens Gamesa SG 5.0</h5>
+            <ul class="list-unstyled">
+              <li><strong>Potencia:</strong> 5.0 MW</li>
+              <li><strong>Altura torre:</strong> 115 m</li>
+              <li><strong>Diámetro rotor:</strong> 132 m</li>
+              <li><strong>Vel. mínima:</strong> 3.0 m/s</li>
+              <li><strong>Precio aprox:</strong> $5.0M USD</li>
+            </ul>
+            <button class="btn btn-select mt-3" onclick="selectTurbine('siemens')">Seleccionar esta turbina</button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Card 5: Nordex N131/3000 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card turbine-card h-100">
+          <img src="Images/Images_calculator/Nordex N131_3000.jpg" class="card-img-top" alt="Nordex N131/3000">
+          <div class="card-body">
+            <h5 class="card-title">Nordex N131/3000</h5>
+            <ul class="list-unstyled">
+              <li><strong>Potencia:</strong> 3.0 MW</li>
+              <li><strong>Altura torre:</strong> 99 m</li>
+              <li><strong>Diámetro rotor:</strong> 131 m</li>
+              <li><strong>Vel. mínima:</strong> 3.0 m/s</li>
+              <li><strong>Precio aprox:</strong> $3.3M USD</li>
+            </ul>
+            <button class="btn btn-select mt-3" onclick="selectTurbine('nordex')">Seleccionar esta turbina</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card turbine-card h-100">
+          <img src="Images/Images_calculator/Cemi 2MW Wind Turbine.png" class="card-img-top" alt="Cemi 2MW Turbine">
+          <div class="card-body">
+            <h5 class="card-title">Cemi 2MW Wind Turbine</h5>
+            <ul class="list-unstyled">
+              <li><strong>Potencia:</strong> 2.0 MW</li>
+              <li><strong>Altura torre:</strong> 80–100 m</li>
+              <li><strong>Diámetro rotor:</strong> 100 m</li>
+              <li><strong>Vel. mínima:</strong> 3.0 m/s</li>
+              <li><strong>Precio aprox:</strong> $1.26M USD</li>
+            </ul>
+            <button class="btn btn-select mt-3" onclick="selectTurbine('cemi')">Seleccionar esta turbina</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div style="height: 50px;"></div>
+
+
+  <div class="calculator-card">
+    <h1 class="section-title text-center">Calculadora de Energía Eólica - Querétaro</h1>
+
+    <div class="row">
+      <!-- Sección de entrada de datos -->
+      <div class="col-md-6">
+        <form id="windForm">
+          <div class="mb-3">
+            <label for="turbineSelect" class="form-label">Selecciona un modelo de turbina:</label>
+            <select class="form-select" id="turbineSelect" required>
+              <option value="">-- Selecciona una turbina --</option>
+              <option value="huimilpan">Turbina Huimilpan - 2 MW</option>
+              <option value="ge">General Electric - 2.5 MW</option>
+              <option value="vestas">Vestas V150 - 4.2 MW</option>
+              <option value="siemens">Siemens Gamesa SG 5.0 - 5 MW</option>
+              <option value="nordex">Nordex N149 - 4.5 MW</option>
+              <option value="cemi">Cemi 2MW Wind Turbine</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="municipioSelect" class="form-label">Selecciona un municipio (opcional):</label>
+            <select class="form-select" id="municipioSelect">
+              <option value="">-- No seleccionar municipio --</option>
+              <option value="amealco">Amealco de Bonfil</option>
+              <option value="arroyo">Arroyo Seco</option>
+              <option value="cadereyta">Cadereyta de Montes</option>
+              <option value="colon">Colón</option>
+              <option value="corregidora">Corregidora</option>
+              <option value="el_marques">El Marqués</option>
+              <option value="ezequiel">Ezequiel Montes</option>
+              <option value="huimilpan">Huimilpan</option>
+              <option value="jalpan">Jalpan de Serra</option>
+              <option value="landa">Landa de Matamoros</option>
+              <option value="penamiller">Peñamiller</option>
+              <option value="pinal">Pinal de Amoles</option>
+              <option value="queretaro">Querétaro</option>
+              <option value="san_joaquin">San Joaquín</option>
+              <option value="san_juan">San Juan del Río</option>
+              <option value="san_pedro">San Pedro Escobedo</option>
+              <option value="tequisquiapan">Tequisquiapan</option>
+              <option value="toliman">Tolimán</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="windSpeed" class="form-label">Velocidad promedio del viento (m/s):</label>
+            <input type="number" class="form-control" id="windSpeed" min="0" step="0.1" placeholder="Ejemplo: 7.5" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="turbineCount" class="form-label">Número de turbinas:</label>
+            <input type="number" class="form-control" id="turbineCount" min="1" step="1" placeholder="Ejemplo: 10" required>
+          </div>
+
+          <button type="submit" class="btn btn-calculate mt-3">Calcular</button>
+        </form>
+      </div>
+
+      <!-- Sección de resultados -->
+      <div class="col-md-6">
+        <div class="result-box">
+          <h4 class="section-title">Resultados</h4>
+          <p><strong>Potencia instalada:</strong> <span id="installedPower">-</span></p>
+          <p><strong>Espacio requerido:</strong> <span id="requiredArea">-</span></p>
+          <p><strong>Energía anual estimada:</strong> <span id="annualEnergy">-</span></p>
+          <p><strong>Energía mensual estimada:</strong> <span id="monthlyEnergy">-</span></p>
+          <p><strong>Inversión estimada:</strong> <span id="estimatedCost">-</span></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- GIF y Explicación (ocultos al inicio) -->
+<!-- Interpretación Inteligente de Resultados (oculto al inicio) -->
+<div id="interpretationSection" style="display: none; margin-top: 50px;">
+  <div style="text-align: center; margin-bottom: 30px;">
+    <img src="Images/Images_calculator/FINAL.gif" 
+         alt="Parque Eólico Operando" 
+         style="max-width: 600px; width: 100%; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+  </div>
+  
+  <!-- Título -->
+  <h2 class="section-title text-center">Interpretación de tus Resultados</h2>
+  
+  <!-- Caja bonita -->
+  <div class="explanation-box" style="background: #f1f6fb; padding: 30px; border-radius: 20px; max-width: 1000px; margin: auto;">
+    <ul class="list-unstyled text-start" id="dynamicInterpretation">
+      <!-- Aquí se llenarán los análisis dinámicos -->
+    </ul>
+  </div>
+
+</div>
+
+<script>
+  // Datos de las turbinas
+  const turbines = {
+    "huimilpan": { name: "Vestas V110-2.0 MW", power: 2.0, rotorDiameter: 110, cutInSpeed: 3.5, cost: 2300000 },
+    "ge": { name: "GE 2.75-120", power: 2.75, rotorDiameter: 120, cutInSpeed: 3.0, cost: 3500000 },
+    "vestas": { name: "Vestas V150-4.2 MW", power: 4.2, rotorDiameter: 150, cutInSpeed: 3.0, cost: 4200000 },
+    "siemens": { name: "Siemens Gamesa SG 5.0", power: 5.0, rotorDiameter: 132, cutInSpeed: 3.0, cost: 5000000 },
+    "nordex": { name: "Nordex N131/3000", power: 3.0, rotorDiameter: 131, cutInSpeed: 3.0, cost: 3300000 },
+    "cemi": { name: "Cemi 2MW Wind Turbine", power: 2.0, rotorDiameter: 100, cutInSpeed: 3.0, cost: 1260000 }
+  };
+
+  const factorCapacidad = 0.35; // 35% para Querétaro
+
+  document.getElementById('windForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Leer datos del formulario
+    const selected = document.getElementById('turbineSelect').value;
+    const windSpeed = parseFloat(document.getElementById('windSpeed').value);
+    const turbineCount = parseInt(document.getElementById('turbineCount').value);
+
+    if (!selected || isNaN(windSpeed) || isNaN(turbineCount) || turbineCount <= 0) {
+      alert("Por favor llena todos los campos correctamente.");
+      return;
+    }
+
+    const turbine = turbines[selected];
+
+    // Verificar velocidad mínima
+    if (windSpeed < turbine.cutInSpeed) {
+      alert(`La velocidad de viento es menor a la velocidad mínima de operación (${turbine.cutInSpeed} m/s) para el modelo seleccionado.`);
+      return;
+    }
+
+    // Cálculos principales
+    const potenciaInstalada = turbine.power * turbineCount; // MW
+    const espacioPorTurbina_m2 = Math.pow(7 * turbine.rotorDiameter, 2);
+    const espacioPorTurbina_ha = espacioPorTurbina_m2 / 10000;
+    const areaTotal = espacioPorTurbina_ha * turbineCount; // hectáreas
+    const energiaAnual = potenciaInstalada * 8760 * factorCapacidad; // MWh/año
+    const energiaMensual = energiaAnual / 12; // MWh/mes
+    const costoTotal = turbine.cost * turbineCount; // USD
+
+    // Mostrar resultados principales
+    document.getElementById('installedPower').innerText = `${potenciaInstalada.toFixed(2)} MW`;
+    document.getElementById('requiredArea').innerText = `${areaTotal.toFixed(1)} hectáreas`;
+    document.getElementById('annualEnergy').innerText = `${energiaAnual.toFixed(0)} MWh/año`;
+    document.getElementById('monthlyEnergy').innerText = `${energiaMensual.toFixed(0)} MWh/mes`;
+    document.getElementById('estimatedCost').innerText = `$${costoTotal.toLocaleString()} USD`;
+
+    // Datos de referencia para comparación
+    const HUIMILPAN_POTENCIA = 49.5; // MW
+    const HUIMILPAN_ENERGIA = 150000; // MWh/año
+    const HUIMILPAN_AREA = 75; // hectáreas
+    const CONSUMO_HOGAR_MEXICO = 3.1; // MWh/año por hogar
+
+    // Cálculos de comparación
+    const porcentajePotencia = (potenciaInstalada / HUIMILPAN_POTENCIA) * 100;
+    const porcentajeEnergia = (energiaAnual / HUIMILPAN_ENERGIA) * 100;
+    const hogaresEquivalentes = energiaAnual / CONSUMO_HOGAR_MEXICO;
+    const camposFutbol = areaTotal / 1; // 1 campo ~ 1 ha
+
+    // Generar contenido dinámico
+    const interpretationHTML = `
+      <li><strong>⚡ Potencia Instalada:</strong> ${potenciaInstalada.toFixed(2)} MW — Representa aproximadamente el <strong>${porcentajePotencia.toFixed(1)}%</strong> de la capacidad del Parque Eólico de Huimilpan (49.5 MW).</li>
+      <li><strong>🌬️ Energía Anual:</strong> ${energiaAnual.toFixed(0)} MWh/año — Equivale al consumo anual de aproximadamente <strong>${hogaresEquivalentes.toFixed(0)} hogares mexicanos promedio</strong>.</li>
+      <li><strong>📅 Energía Mensual:</strong> ${energiaMensual.toFixed(0)} MWh/mes — Producción mensual promedio estimada de electricidad.</li>
+      <li><strong>🌎 Área Requerida:</strong> ${areaTotal.toFixed(1)} hectáreas — Aproximadamente <strong>${camposFutbol.toFixed(0)} campos de fútbol</strong> de extensión.</li>
+      <li><strong>💰 Costo Estimado:</strong> $${costoTotal.toLocaleString()} USD — Inversión proyectada para construir el parque eólico de esta magnitud.</li>
+    `;
+
+    // Insertar análisis dinámico
+    document.getElementById('dynamicInterpretation').innerHTML = interpretationHTML;
+
+    // Mostrar la sección de interpretación con animación
+    const interpSection = document.getElementById('interpretationSection');
+    interpSection.style.display = 'block';
+    setTimeout(() => interpSection.classList.add('show'), 50);
+  });
+</script>
+
+<script>
+  // Función para seleccionar turbina desde la card
+  function selectTurbine(turbineKey) {
+  const turbineSelect = document.getElementById('turbineSelect');
+  
+  // Cambiar la selección
+  turbineSelect.value = turbineKey;
+
+  // Mostrar el nombre seleccionado
+  const turbineNames = {
+    huimilpan: "Vestas V110-2.0 MW",
+    ge: "GE 2.75-120",
+    vestas: "Vestas V150-4.2 MW",
+    siemens: "Siemens Gamesa SG 5.0",
+    nordex: "Nordex N131/3000",
+    cemi: "Cemi 2MW Wind Turbine"
+  };
+  
+  const selectedTurbineName = document.getElementById('selectedTurbineName');
+  if (selectedTurbineName) {
+    selectedTurbineName.innerHTML = `<div class="alert alert-info" role="alert">
+      Has seleccionado: <strong>${turbineNames[turbineKey]}</strong>
+    </div>`;
+  }
+
+  // Delay muy pequeño para permitir que se renderice el mensaje y luego hacer scroll
+  setTimeout(() => {
+    const windForm = document.getElementById('windForm');
+    if (windForm) {
+      windForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 300); // 300 ms para dar tiempo al navegador de acomodar todo
+}
+
+  </script>
+  <script>
+    const municipioVelocidades = {
+      amealco: 3.2,
+      arroyo: 4,
+      cadereyta: 3.5,
+      colon: 4.4,
+      corregidora: 4.1,
+      el_marques: 4.9,
+      ezequiel: 3.8,
+      huimilpan: 4.2,
+      jalpan: 3.5,
+      landa: 3.4,
+      penamiller: 4,
+      pinal: 3.7,
+      queretaro: 3.7,
+      san_joaquin: 3.9,
+      san_juan: 4.2,
+      san_pedro: 4.8,
+      tequisquiapan: 3.7,
+      toliman: 0.6
+    };
+  
+    document.getElementById('municipioSelect').addEventListener('change', function() {
+      const selectedMunicipio = this.value;
+      const windInput = document.getElementById('windSpeed');
+      
+      if (selectedMunicipio && municipioVelocidades[selectedMunicipio]) {
+        windInput.value = municipioVelocidades[selectedMunicipio];
+      } else {
+        windInput.value = '';
+      }
+    });
+  </script>
+  
+  
+</body>
+</html>
