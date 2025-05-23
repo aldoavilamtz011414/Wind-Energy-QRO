@@ -8,6 +8,26 @@
 <meta charset="utf-8"/>
 <title>Mapa y Municipios de Querétaro</title>
 <style>
+  #zoom-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.zoom-btn {
+  background-color: #e0e0e0;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.zoom-btn:hover {
+  background-color: #ccc;
+}
+
   body {
     font-family: 'Segoe UI', sans-serif;
     background-color: #f4f4f4;
@@ -117,6 +137,11 @@
 <main>
 <div class="contenedor-flex">
   <div class="mapa-container">
+    <div id="zoom-controls">
+  <button class="zoom-btn" onclick="zoomMap(-0.1)">–</button>
+  <button class="zoom-btn" onclick="zoomMap(0.1)">+</button>
+</div>
+
 <svg height="1061.52" id="svg2" inkscape:output_extension="org.inkscape.output.svg.inkscape" inkscape:version="0.45.1" sodipodi:docbase="C:\Documents and Settings\Juan\Mis documentos\Mis imágenes\Wikipedia\mapas" sodipodi:docname="Municipios de Queretaro.svg" sodipodi:version="0.32" version="1.0" width="1183.8877" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg">
 <defs id="defs4"></defs>
 <sodipodi:namedview bordercolor="#666666" borderopacity="1.0" id="base" inkscape:current-layer="layer1" inkscape:cx="591.94385" inkscape:cy="530.76001" inkscape:document-units="px" inkscape:guide-bbox="true" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:window-height="712" inkscape:window-width="1024" inkscape:window-x="-4" inkscape:window-y="-4" inkscape:zoom="0.4860954" pagecolor="#ffffff" showguides="true"></sodipodi:namedview>
@@ -296,7 +321,19 @@
 </main>
 
 <script>
-// Puedes personalizar la lógica de redirección desde aquí si prefieres usar anchors u otra ruta
+// Pued<script>
+  let zoomLevel = 1;
+  const svg = document.querySelector("svg");
+
+  function zoomMap(factor) {
+    zoomLevel += factor;
+    if (zoomLevel < 0.3) zoomLevel = 0.3;
+    if (zoomLevel > 3) zoomLevel = 3;
+    svg.style.transform = `scale(${zoomLevel})`;
+    svg.style.transformOrigin = 'top left';
+  }
+</script>
+
 </script>
 
 
