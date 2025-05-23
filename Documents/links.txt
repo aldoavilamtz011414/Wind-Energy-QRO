@@ -1,0 +1,7 @@
+https://www.wunderground.com/wundermap?lat=20.62&lon=-100.19&sat=1
+https://clima.inifap.gob.mx/lnmysr/Estaciones/Mapa
+https://meteostat.net/es/station/76625?t=2025-04-06/2025-04-13
+https://www.tutiempo.net/clima/ws-766250.html#:~:text=Clima%20Queretaro%2C%20Qro,2025
+https://www.hidraulicafacil.com.mx/2022/01/descargar-datos-del-sistema-nasa-power.html#:~:text=Descargar%20datos%20del%20sistema%20NASA,solar%20y%20radiaci%C3%B3n%20solar
+https://mx.meteosolana.net/clima-por-municipios-en-queretaro/clima-en-tequisquiapan
+
