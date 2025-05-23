@@ -61,34 +61,37 @@ svg {
     z-index: 998;
   }
 
-  .contenedor-flex {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 20px;
-    overflow-x: auto;
-  }
+.contenedor-flex {
+  display: flex;
+  flex-direction: column; /* antes decía row */
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
 
-  .mapa-container {
-    min-width: 800px;
-    background: #fff;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  }
 
-  .tabla-container {
-    width: 300px;
-    max-height: 80vh;
-    overflow-y: auto;
-    background: white;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    flex-shrink: 0;
-  }
+.mapa-container {
+  width: 100%;
+  max-width: 1000px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.tabla-container {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+  max-height: 80vh;
+  overflow-y: auto;
+  background: white;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
 
   svg {
     width: 100%;
