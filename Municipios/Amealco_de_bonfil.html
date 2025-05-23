@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard Amealco de Bonfil</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('../Images/TS-Campaign-Page_Green-Projects-850x411.jpg') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+    }
+    .container {
+      max-width: 960px;
+      margin: auto;
+      padding: 20px;
+      background-color: rgba(255,255,255,0.95);
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+    .controls {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    select {
+      font-size: 1rem;
+      padding: 6px 10px;
+      margin: 0 10px;
+    }
+    .kpi-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .kpi {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      width: 30%;
+      text-align: center;
+      margin: 10px;
+    }
+    canvas {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+      margin: 30px 0;
+    }
+    .note {
+      background: #fffde7;
+      border-left: 6px solid #fbc02d;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>🌬️ Potencial Eólico – Amealco de Bonfil (Qro)</h1>
+
+  <div class="controls">
+    <label for="year">Año:</label>
+    <select id="year" onchange="updateDashboard()">
+      <option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option>
+    </select>
+
+    <label for="height">Altura:</label>
+    <select id="height" onchange="updateDashboard()">
+      <option value="10">10 m</option>
+      <option value="80" selected>80 m</option>
+    </select>
+  </div>
+
+  <div class="kpi-container">
+    <div class="kpi">
+      <strong>🌬️ Velocidad promedio</strong>
+      <div id="kpiSpeed" style="font-size: 1.5rem;">--</div>
+    </div>
+    <div class="kpi">
+      <strong>🚦 Semáforo</strong>
+      <div style="width: 60px; height: 60px; border-radius: 50%; background-color: orange; margin: 10px auto; box-shadow: 0 0 15px rgba(255,165,0,0.7);"></div>
+      <div><strong>Viabilidad: Media</strong></div>
+    </div>
+    <div class="kpi">
+      <strong>📏 Altura seleccionada</strong>
+      <div id="kpiAltura" style="font-size: 1.5rem;">80 m</div>
+    </div>
+  </div>
+
+  <h2>📈 Velocidad mensual</h2>
+  <canvas id="lineChart"></canvas>
+
+  <h2>📊 Histograma</h2>
+  <canvas id="histChart"></canvas>
+
+  <h2>🌤️ Promedio por estación</h2>
+  <canvas id="seasonChart"></canvas>
+
+  <h2>📊 Evaluación de Viabilidad</h2>
+  <div class="note">
+    <h3>✅ Viabilidad técnica – 80 m</h3>
+    <p>Amealco de Bonfil presenta velocidades medias entre 4 y 5 m/s a 80 metros, lo que indica una viabilidad eólica <strong>moderada</strong> con el uso de aerogeneradores de baja velocidad de corte.</p>
+    <p>➡️ Puede considerarse viable para proyectos de mediana escala o microparques si se integran tecnologías adaptadas al entorno urbano-rural.</p>
+  </div>
+
+  <div class="note">
+    <h3>📍 Consideración territorial</h3>
+    <p>Según el <strong>Plan de Desarrollo Urbano de Querétaro</strong>, ciertas zonas del municipio permiten la generación eléctrica limpia, incluyendo la eólica. Sin embargo, la disponibilidad de grandes extensiones de terreno puede estar limitada.</p>
+    <p>➡️ Se recomienda análisis de microzonificación para identificar parcelas adecuadas.</p>
+  </div>
+</div>
+
+<script>
+  const dashboardData = {"2018": {"kpi_10": 3.14, "kpi_80": 4.27, "monthly_10": [2.98, 3.23, 3.21, 3.31, 3.3, 3.33, 3.31, 3.29, 3.05, 2.9, 2.9, 2.9], "monthly_80": [4.05, 4.39, 4.36, 4.49, 4.48, 4.52, 4.49, 4.47, 4.14, 3.94, 3.94, 3.94], "hist_10": [0, 4, 8, 0, 0], "hist_80": [0, 0, 3, 9, 0], "season_10": [3.04, 3.27, 3.31, 2.95], "season_80": [4.13, 4.44, 4.49, 4.01]}, "2019": {"kpi_10": 3.13, "kpi_80": 4.25, "monthly_10": [3.1, 3.12, 3.21, 3.25, 3.19, 3.31, 3.29, 3.2, 3.08, 2.97, 2.9, 2.9], "monthly_80": [4.21, 4.24, 4.36, 4.41, 4.33, 4.49, 4.47, 4.35, 4.18, 4.03, 3.94, 3.94], "hist_10": [0, 3, 9, 0, 0], "hist_80": [0, 0, 2, 10, 0], "season_10": [3.04, 3.22, 3.27, 2.98], "season_80": [4.13, 4.37, 4.44, 4.05]}, "2020": {"kpi_10": 3.18, "kpi_80": 4.32, "monthly_10": [2.96, 3.26, 3.4, 3.31, 3.4, 3.33, 3.29, 3.16, 3.04, 3.0, 3.02, 3.04], "monthly_80": [4.02, 4.43, 4.62, 4.49, 4.62, 4.52, 4.47, 4.29, 4.13, 4.07, 4.1, 4.13], "hist_10": [0, 1, 11, 0, 0], "hist_80": [0, 0, 0, 12, 0], "season_10": [3.09, 3.37, 3.26, 3.02], "season_80": [4.19, 4.58, 4.43, 4.1]}, "2021": {"kpi_10": 3.16, "kpi_80": 4.29, "monthly_10": [3.06, 3.16, 3.17, 3.4, 3.4, 3.39, 3.2, 3.15, 3.03, 2.96, 2.96, 3.05], "monthly_80": [4.16, 4.29, 4.3, 4.62, 4.62, 4.6, 4.35, 4.28, 4.11, 4.02, 4.02, 4.14], "hist_10": [0, 2, 10, 0, 0], "hist_80": [0, 0, 0, 12, 0], "season_10": [3.09, 3.32, 3.25, 2.98], "season_80": [4.2, 4.51, 4.41, 4.05]}, "2022": {"kpi_10": 3.13, "kpi_80": 4.26, "monthly_10": [2.95, 3.18, 3.27, 3.4, 3.17, 3.33, 3.4, 3.12, 3.0, 2.92, 2.9, 2.96], "monthly_80": [4.01, 4.32, 4.44, 4.62, 4.3, 4.52, 4.62, 4.24, 4.07, 3.97, 3.94, 4.02], "hist_10": [0, 4, 8, 0, 0], "hist_80": [0, 0, 2, 10, 0], "season_10": [3.03, 3.28, 3.28, 2.94], "season_80": [4.12, 4.45, 4.46, 3.99]}, "2023": {"kpi_10": 3.14, "kpi_80": 4.26, "monthly_10": [2.95, 3.11, 3.34, 3.4, 3.34, 3.28, 3.19, 3.14, 2.9, 2.9, 3.0, 3.09], "monthly_80": [4.01, 4.22, 4.54, 4.62, 4.54, 4.45, 4.33, 4.26, 3.94, 3.94, 4.07, 4.2], "hist_10": [0, 3, 9, 0, 0], "hist_80": [0, 0, 2, 10, 0], "season_10": [3.05, 3.36, 3.2, 2.93], "season_80": [4.14, 4.57, 4.35, 3.98]}, "2024": {"kpi_10": 3.14, "kpi_80": 4.27, "monthly_10": [2.9, 3.28, 3.22, 3.34, 3.4, 3.4, 3.33, 3.03, 2.96, 2.91, 2.9, 3.06], "monthly_80": [3.94, 4.45, 4.37, 4.54, 4.62, 4.62, 4.52, 4.11, 4.02, 3.95, 3.94, 4.16], "hist_10": [0, 4, 8, 0, 0], "hist_80": [0, 0, 3, 9, 0], "season_10": [3.08, 3.32, 3.25, 2.92], "season_80": [4.18, 4.51, 4.42, 3.97]}, "months": ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]};
+  const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+  const ctxLine = document.getElementById("lineChart").getContext("2d");
+  const ctxHist = document.getElementById("histChart").getContext("2d");
+  const ctxSeason = document.getElementById("seasonChart").getContext("2d");
+
+  const lineChart = new Chart(ctxLine, {
+    type: 'line',
+    data: {
+      labels: months,
+      datasets: [{
+        label: "Velocidad del viento (m/s)",
+        data: [],
+        borderColor: "teal",
+        fill: false,
+        tension: 0.3
+      }]
+    }
+  });
+
+  const histChart = new Chart(ctxHist, {
+    type: 'bar',
+    data: {
+      labels: ["<2", "2-3", "3-4", "4-5", ">5"],
+      datasets: [{
+        label: "Frecuencia",
+        data: [],
+        backgroundColor: "orange"
+      }]
+    }
+  });
+
+  const seasonChart = new Chart(ctxSeason, {
+    type: 'bar',
+    data: {
+      labels: ["Invierno", "Primavera", "Verano", "Otoño"],
+      datasets: [{
+        label: "Velocidad promedio por estación (m/s)",
+        data: [],
+        backgroundColor: ["#74b9ff", "#fab1a0", "#ffeaa7", "#a29bfe"]
+      }]
+    }
+  });
+
+  function updateDashboard() {
+    const year = document.getElementById("year").value;
+    const height = document.getElementById("height").value;
+    const data = dashboardData[year];
+
+    document.getElementById("kpiSpeed").innerText = height === "10" ? data.kpi_10 + " m/s" : data.kpi_80 + " m/s";
+    document.getElementById("kpiAltura").innerText = height + " m";
+
+    lineChart.data.datasets[0].data = height === "10" ? data.monthly_10 : data.monthly_80;
+    lineChart.update();
+
+    histChart.data.datasets[0].data = height === "10" ? data.hist_10 : data.hist_80;
+    histChart.update();
+
+    seasonChart.data.datasets[0].data = height === "10" ? data.season_10 : data.season_80;
+    seasonChart.update();
+  }
+
+  updateDashboard();
+</script>
+</body>
+</html>
